@@ -49,3 +49,10 @@ V1 stores data in browser Local Storage, so data is device/browser-specific.
 - Automatic Light/Dark Mode based on the phone or browser setting
 - Separate semantic colors for income/savings, expenses, and warnings
 - Improved active navigation, input focus, button, card, and progress-bar contrast
+
+
+## V1.5 visual update
+- Lighter fresh-green primary color
+- Warm off-white / ivory background instead of dark styling
+- Soft green hero treatment
+- Light cards, navigation, inputs, and subtle shadows for clearer mobile contrast
