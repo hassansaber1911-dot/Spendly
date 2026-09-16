@@ -42,3 +42,10 @@ V1 stores data in browser Local Storage, so data is device/browser-specific.
 - Date inputs dynamically constrain each other with min/max values
 - This Month explicitly resets the Home filter to the first and last calendar day of the selected month
 - The same date-range validation is applied to Transactions
+
+
+## V1.4 visual update
+- Replaced black primary actions with a consistent indigo/blue brand color
+- Automatic Light/Dark Mode based on the phone or browser setting
+- Separate semantic colors for income/savings, expenses, and warnings
+- Improved active navigation, input focus, button, card, and progress-bar contrast
