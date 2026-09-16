@@ -56,3 +56,25 @@ V1 stores data in browser Local Storage, so data is device/browser-specific.
 - Warm off-white / ivory background instead of dark styling
 - Soft green hero treatment
 - Light cards, navigation, inputs, and subtle shadows for clearer mobile contrast
+
+
+## V1.6 Analytics + production cache
+GitHub Pages assets use `?v=1.6` cache-busting so new CSS/JS versions refresh more reliably.
+
+GA4 events included:
+- onboarding_completed
+- income_added
+- income_edited
+- income_deleted
+- expense_added
+- savings_added
+- transaction_edited
+- transaction_deleted
+- budgets_saved
+- date_filter_applied
+- this_month_selected
+- category_expanded
+
+Before publishing, replace `G-XXXXXXXXXX` at the top of `app.js` with the GA4 Measurement ID for Spendly.
+
+Privacy: user-entered names, notes, income-source text, and subcategory text are not sent to Google Analytics.
