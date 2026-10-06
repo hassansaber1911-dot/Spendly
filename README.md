@@ -1,144 +1,55 @@
+![Spendly — personal finance](assets/cover.svg)
+
 # Spendly
 
-**A mobile-first personal finance and budgeting app for understanding where your money goes — without turning budgeting into a spreadsheet.**
+**Know what is left to spend after expenses and savings.**
 
-Spendly is a working product prototype designed around a simple monthly money model: record income, track expenses, separate savings, set category budgets, and immediately understand what is still available to spend.
+[**Live Demo →**](https://hassansaber1911-dot.github.io/Spendly/)
 
-> **Available Balance = Income − Expenses − Savings**
+A mobile-first budgeting prototype for people who want a clear money picture without maintaining a spreadsheet.
 
-## Product Overview
+## Product Preview
 
-Personal finance tools can become complicated quickly. For someone who mainly wants to answer _“How much did I earn, spend, save, and what is left?”_, that complexity creates friction.
+Real screenshots from the live application using sample data.
 
-Spendly focuses on that core job with a lightweight mobile-first experience. The product keeps savings separate from expenses, supports multiple income entries, and gives users both a high-level financial snapshot and category-level spending visibility.
+### Income, expenses and savings in one view
+![Spendly dashboard with sample finances](assets/dashboard.jpg)
 
-## The Problem
+### Set category budgets deliberately
+![Spendly monthly budget editing](assets/budgets.jpg)
 
-People often track money across notes, banking apps, spreadsheets, or not at all. This makes a few basic questions surprisingly difficult:
+### Inspect the transactions behind a total
+![Spendly transaction history](assets/transactions.jpg)
 
-- How much money is actually available after expenses and savings?
-- Which categories are consuming the budget?
-- Am I over budget in a specific category?
-- What did I spend during a particular period?
-- Can I keep savings visible without treating them as spending?
+## The problem
+Money is scattered across bank apps, notes and memory. The user needs to know what they earned, spent, saved and still have available.
 
-Spendly brings those questions into one focused flow.
+## MVP and user flow
+Onboard → add income → record expenses or savings → set optional budgets → review the dashboard and transaction history.
 
-## Core Experience
+- Multiple income entries with optional sources.
+- Expenses by date, category and reusable subcategory.
+- Savings tracked separately from spending.
+- Category budgets and over-budget visibility.
+- Date filters and transaction editing.
 
-### Dashboard
-- Income, expenses, savings, and remaining balance in one view
-- Custom date ranges, including periods spanning multiple months
-- Spending by category with budget progress and overspend visibility
-- Recent transactions for quick review
+## Business rules and product decisions
+**Available balance = Income − Expenses − Savings.** Savings reduce spendable money without inflating expenses.
 
-### Income
-- Multiple income entries
-- Date and amount tracking
-- Optional income source
-- Edit and delete existing income records
+**Setup happens in context.** New subcategories are remembered when a transaction is entered; a separate category-management screen is unnecessary for this MVP.
 
-### Expenses & Savings
-- Add expenses by date
-- Track savings separately from expenses
-- Seven main spending categories: Fixed Fees, Transportation, Food, Family, Shopping, Entertainment, and Installments
-- Optional reusable subcategories
-- Optional transaction notes
-- Edit or delete previous transactions
+**Budgets are optional.** Users can start with tracking and add limits later.
 
-### Budgets
-- Monthly category-level budgets
-- Planned vs. actual spending
-- Remaining budget or over-budget indication
-- Explicit edit/save flow to reduce accidental changes
+**Local data keeps the experiment small.** Records persist in this browser, making the core loop testable before investing in accounts and synchronization.
 
-### Transaction History
-- Filter by date range
-- Expenses grouped by category
-- Category totals at a glance
-- Expand categories to inspect individual transactions
+## Measurement
+GA4 events are implemented for onboarding, income changes, expense/savings entry, budget saves, date filters and category expansion. These are instrumentation hooks, not evidence of adoption or improved financial outcomes. User names, notes and free-text sources are excluded from event parameters.
 
-## Product Decisions
+## Current limits
+Browser-local data; no cloud sync, bank connections or payment processing. This is a working prototype, not a financial service.
 
-A few deliberate choices shape the current MVP:
-
-**Savings are not expenses.** Saving money reduces the amount available to spend, but it should not inflate the user's expense total.
-
-**Subcategories are created in context.** Users can type a subcategory while recording a transaction. New values are remembered for future use, avoiding a separate setup screen.
-
-**The product is mobile-first.** The primary interaction model is designed for quick everyday entry from a phone, with bottom navigation and compact transaction flows.
-
-**Date ranges are flexible.** Users can analyze one month or a custom period across multiple months instead of being locked into a monthly dashboard.
-
-**Budgets are optional.** Spendly still works as a tracker when no category budget has been configured.
-
-## User Flow
-
-1. Complete the lightweight onboarding and enter a name.
-2. Add one or more income entries.
-3. Record expenses or savings as they happen.
-4. Optionally define monthly budgets by category.
-5. Use the dashboard to understand available balance and category performance.
-6. Review, filter, edit, or delete historical transactions.
-
-## Current MVP Scope
-
-Spendly currently runs entirely in the browser and stores user data in **Local Storage**. Data therefore stays specific to that browser/device and there is currently no account sync or cloud backup.
-
-This implementation is intentionally lightweight: it validates the core product experience before adding authentication, backend infrastructure, bank integrations, or other higher-cost capabilities.
-
-## Analytics & Product Measurement
-
-The prototype includes privacy-conscious GA4 event tracking for key product interactions, including:
-
-- Onboarding completion
-- Income added, edited, and deleted
-- Expenses and savings added
-- Transactions edited and deleted
-- Budgets saved
-- Date filters applied
-- Category expansion
-
-Free-text financial context such as the user's name, transaction notes, income source, and subcategory text is not included in analytics events.
-
-## Tech Stack
-
-- HTML
-- CSS
-- Vanilla JavaScript
-- Browser Local Storage
-- Google Analytics 4
-- GitHub Pages-ready static architecture
-
-The intentionally small stack keeps the prototype fast to iterate, easy to inspect, and inexpensive to host.
-
-## Product Roadmap
-
-Potential next steps after validating the MVP:
-
-- User authentication and secure cloud sync
-- Multi-device access and backup
-- Recurring income and expenses
-- Custom spending categories
-- Goals and richer savings planning
-- Monthly insights and spending trends
-- Data export/import
-- Arabic localization
-- PWA installation and offline improvements
-- Optional integrations with financial data sources
-
-These are roadmap opportunities rather than claims about the current product.
-
-## Status
-
-**Working MVP / product prototype.**
-
-The current version supports the complete core loop of adding income, recording expenses and savings, setting category budgets, reviewing transaction history, and understanding the remaining available balance.
-
-## About This Project
-
-Spendly was built as an end-to-end product exercise: identifying a focused personal-finance problem, defining an MVP, iterating on usability, implementing the working prototype, and adding product analytics to support future validation.
+## Validation
+Live flow checked on 6 October 2026 with synthetic data: income **10,000 SAR**, expenses **3,650 SAR**, savings **2,000 SAR** → available balance **4,350 SAR**. Category budget editing and transaction review were exercised. Onboarding and timezone-related month calculations were repaired during this review.
 
 ---
-
-**Built by Hassan Mohamed Saber**
+Built by **Hassan Mohamed Saber** · Product portfolio
