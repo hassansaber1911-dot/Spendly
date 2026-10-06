@@ -45,7 +45,7 @@ function normalizeIncome(){
 normalizeIncome();
 const money=n=>Number(n||0).toLocaleString(undefined,{maximumFractionDigits:2})+" SAR";
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-function range(m){let [y,mo]=m.split("-").map(Number);return [m+"-01",new Date(y,mo,0).toISOString().slice(0,10)]}
+function range(m){let [y,mo]=m.split("-").map(Number);return [m+"-01",m+"-"+String(new Date(Date.UTC(y,mo,0)).getUTCDate()).padStart(2,"0")]}
 function data(from,to){
  let rows=state.tx.filter(x=>x.date>=from&&x.date<=to), incomes=(state.incomes||[]).filter(x=>x.date>=from&&x.date<=to),expenses=0,savings=0,by={};
  rows.forEach(x=>{if(x.type==="Expense"){expenses+=x.amount;by[x.category]=(by[x.category]||0)+x.amount}if(x.type==="Savings")savings+=x.amount});
@@ -63,8 +63,8 @@ function nav(){return `<div class="bottom"><div class="nav">
 function stat(k,v){return `<div class="card stat"><span class="muted">${k}</span><b>${money(v)}</b></div>`}
 function home(){
  let defaultRange=range(month), f=window.homeFrom||defaultRange[0], t=window.homeTo||defaultRange[1], d=data(f,t);
- let months=[]; let cur=new Date(f+"T00:00:00"), last=new Date(t+"T00:00:00");
- while(cur<=last){months.push(cur.toISOString().slice(0,7));cur.setMonth(cur.getMonth()+1)}
+ let months=[]; let cur=new Date(f.slice(0,7)+"-01T00:00:00Z"), last=new Date(t.slice(0,7)+"-01T00:00:00Z");
+ while(cur<=last){months.push(cur.toISOString().slice(0,7));cur.setUTCMonth(cur.getUTCMonth()+1)}
  let inc=d.income, available=inc-d.expenses-d.savings;
  let budget={}; months.forEach(m=>{let b=state.budgets[m]||{};CATS.forEach(c=>budget[c]=(budget[c]||0)+Number(b[c]||0))});
  return `<div class="top"><div><div class="muted">Welcome back</div><div class="brand">${esc(state.profile.name||"Spendly")}</div></div></div>
